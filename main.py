@@ -5,11 +5,8 @@ from fastapi.responses import JSONResponse
 
 app = FastAPI()
 
-@app.get("/get_cars")
+@app.get("/api/get_cars")  # променяме на /api/get_cars
 def get_cars():
-    """
-    Връща наличните автомобили от sale.peugeot.bg като JSON
-    """
     url = "https://sale.peugeot.bg/ecommerce/fb/product_feed.xml"
     try:
         response = requests.get(url)
@@ -31,7 +28,7 @@ def get_cars():
 
             cars.append({
                 "model": title,
-                "price": description,  # Пример: "35 858,96 € / 70 134,03 лв."
+                "price": description,
                 "image": image_link,
                 "url": link
             })
